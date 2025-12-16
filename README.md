@@ -1,0 +1,2 @@
+# salmane-academy
+Official website for Salmane Academy – AI courses, digital products, and tools.
