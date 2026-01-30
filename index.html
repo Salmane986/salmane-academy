@@ -1,276 +1,782 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Salmane Academy</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<!doctype html>
+<html lang="ar" dir="rtl" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SALMANE ACADEMY - Roadmap to Financial Freedom 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Montserrat:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
   <style>
-    :root{
-      --bg:#05030a;
-      --purple:#6d4bff;
-      --green:#00ff9c;
-      --text:#eef1ff;
-      --muted:#a1a6c8;
-      --glass:rgba(255,255,255,0.08);
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    h1, h2, h3, .gold-gradient {
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 2px;
+    }
+    
+    :root {
+      --pure-black: #000000;
+      --deep-gold: #b8860b;
+      --bright-gold: #d4af37;
+    }
+    
+    .gold-gradient {
+      background: linear-gradient(135deg, var(--deep-gold) 0%, var(--bright-gold) 50%, var(--deep-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .gold-border {
+      border: 2px solid var(--deep-gold);
+    }
+    
+    .gold-glow {
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), 0 0 60px rgba(184, 134, 11, 0.1);
+    }
+    
+    .btn-gold {
+      background: linear-gradient(135deg, var(--deep-gold) 0%, var(--bright-gold) 50%, var(--deep-gold) 100%);
+      background-size: 200% 200%;
+      animation: shimmer 3s ease infinite;
+    }
+    
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes pulse-gold {
+      0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.8); }
+    }
+    
+    @keyframes rotate-glow {
+      0% { 
+        box-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 60px rgba(184, 134, 11, 0.4);
+      }
+      50% { 
+        box-shadow: 0 0 50px rgba(212, 175, 55, 0.9), 0 0 80px rgba(184, 134, 11, 0.6);
+      }
+      100% { 
+        box-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 60px rgba(184, 134, 11, 0.4);
+      }
+    }
+    
+    .logo-container {
+      display: inline-block;
+      border-radius: 50%;
+      padding: 6px;
+      background: linear-gradient(135deg, var(--deep-gold) 0%, var(--bright-gold) 50%, var(--deep-gold) 100%);
+      background-size: 200% 200%;
+      animation: shimmer 3s ease infinite, rotate-glow 2s ease-in-out infinite;
+    }
+    
+    .logo-inner {
+      border-radius: 50%;
+      background: #000;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .pulse-animation {
+      animation: pulse-gold 2s ease-in-out infinite;
+    }
+    
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+    
+    .video-background iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 100vh;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    
+    @media (min-aspect-ratio: 16/9) {
+      .video-background iframe {
+        height: 56.25vw;
+      }
+    }
+    
+    @media (max-aspect-ratio: 16/9) {
+      .video-background iframe {
+        width: 177.78vh;
+      }
+    }
+    
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: -1;
+    }
+    
+    .registration-page {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.95);
+      transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+      overflow: hidden;
+    }
+    
+    .registration-page.slide-out {
+      transform: translateX(-100%);
+    }
+    
+    .main-content {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .main-content.visible {
+      opacity: 1;
+    }
+    
+    .input-gold {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--deep-gold);
+      transition: all 0.3s ease;
+    }
+    
+    .input-gold:focus {
+      border-color: var(--bright-gold);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+      outline: none;
+    }
+    
+    .card-luxury {
+      background: linear-gradient(145deg, rgba(0, 0, 0, 0.8) 0%, rgba(20, 20, 20, 0.9) 100%);
+      border: 1px solid rgba(184, 134, 11, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    
+    .spec-row {
+      border-bottom: 1px solid rgba(184, 134, 11, 0.2);
+    }
+    
+    .spec-row:last-child {
+      border-bottom: none;
+    }
+    
+    .social-icon {
+      transition: all 0.3s ease;
+      color: #d4af37;
+    }
+    
+    .social-icon:hover {
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
+    }
+    
+    .product-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+    }
+    
+    .navbar-sticky {
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--deep-gold), var(--bright-gold));
+      border-radius: 4px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:Inter,system-ui;
-      background:var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
+    .decorative-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--bright-gold), transparent);
     }
-
-    /* Video Background */
-    .video-bg{
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      overflow:hidden;
+    
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
-
-    .video-bg iframe{
-      width:100vw;
-      height:100vh;
-      pointer-events:none;
-      transform:scale(1.2);
+    
+    @keyframes modalSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
-
-    .video-overlay{
-      position:fixed;
-      inset:0;
-      background:linear-gradient(180deg, rgba(8,5,20,0.75), rgba(5,10,12,0.9));
-      z-index:-1;
+    
+    .modal-show {
+      display: flex !important;
+      animation: modalFadeIn 0.3s ease-out;
     }
-
-    /* Header */
-    header{
-      position:fixed;
-      top:20px;
-      left:0;right:0;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:0 40px;
-      z-index:10;
+    
+    .modal-show #modalContent {
+      animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-
-    header a{cursor:pointer;
-      color:var(--text);
-      text-decoration:none;
-      margin-left:16px;
-      opacity:.85;
+    
+    .product-card {
+      position: relative;
+      overflow: hidden;
     }
-
-    header a:hover{opacity:1}
-
-    /* Hero */
-    .hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      padding:0 40px;
+    
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s;
     }
-
-    .hero-box{
-      max-width:700px;
-      background:var(--glass);
-      backdrop-filter:blur(18px);
-      border-radius:20px;
-      padding:48px;
-      border:1px solid rgba(255,255,255,0.1);
-      box-shadow:0 0 60px rgba(109,75,255,0.25);
+    
+    .product-card:hover::before {
+      animation: shine 1.5s ease-in-out;
     }
-
-    h1{
-      font-size:clamp(32px,5vw,54px);
-      margin-bottom:16px;
+    
+    @keyframes shine {
+      0% {
+        top: -50%;
+        left: -50%;
+      }
+      100% {
+        top: 150%;
+        left: 150%;
+      }
     }
-
-    p{
-      color:var(--muted);
-      margin-bottom:28px;
-      line-height:1.6;
-    }
-
-    .btn{
-      padding:14px 26px;
-      border-radius:14px;
-      border:none;
-      cursor:pointer;
-      font-weight:600;
-      background:linear-gradient(90deg,var(--purple),var(--green));
-      color:#02140e;
-      box-shadow:0 0 25px rgba(0,255,156,0.4);
-    }
-
-    /* Cards */
-    .section{
-      padding:120px 40px 80px;
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:24px;
-    }
-
-    .card{
-      background:var(--glass);
-      padding:26px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,0.08);
-      transition:.3s;
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 0 30px rgba(109,75,255,0.35);
-    }
-
-    .card h3{margin-bottom:10px}
-
-    footer{
-      padding:40px;
-      text-align:center;
-      color:var(--muted);
-    }
-
-    @media(max-width:700px){
-      header{padding:0 20px}
-      .hero,.section{padding:80px 20px}
-      .hero-box{padding:32px}
-    }
-  
-    /* Toggle */
-    .toggle{
-      position:fixed;bottom:24px;right:24px;z-index:20;
-      background:linear-gradient(90deg,var(--purple),var(--green));
-      border:none;border-radius:50%;width:56px;height:56px;
-      cursor:pointer;color:#02140e;font-size:20px;
-      box-shadow:0 0 30px rgba(0,255,156,.5)
-    }
-
-    /* Particles canvas */
-    #particles{position:fixed;inset:0;z-index:-1}
-
-    html.light{
-      --bg:#f5f7ff;
-      --text:#060818;
-      --muted:#444;
-      --glass:rgba(0,0,0,0.05);
-    }
-    html.light body{background:var(--bg);color:var(--text)}
   </style>
-</head>
-<body>
-<canvas id="particles"></canvas>
-
-  <!-- VIDEO BACKGROUND -->
-  <div class="video-bg">
-    <iframe src="https://www.youtube.com/embed/saJJOLTk05A?autoplay=1&mute=1&loop=1&playlist=saJJOLTk05A&controls=0&showinfo=0"></iframe>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-black text-white overflow-hidden"><!-- Image Background -->
+  <div class="video-background"><img src="https://public-files.gumroad.com/iwta282jijqv7nhhf8i9q4c3cuf0" alt="Background" class="w-full h-full object-cover" loading="lazy">
   </div>
-  <div class="video-overlay"></div>
-
-  <!-- HEADER -->
-  <header>
-    <strong>Salmane Academy</strong>
-    <nav>
-      <a href="#courses">Courses</a>
-      <a href="#ai-chat">AI Chat</a>
-      <a href="#about">About</a>
-      <a href="#pricing">Pricing</a>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-box">
-      <h1>Build the Future with AI & Code</h1>
-      <p>Digital products, practical courses, and AI tools designed for modern builders and creators.</p>
-      <a href="#courses" class="btn">Browse Courses</a> <a href="#pricing" class="btn" style="margin-left:12px;">Get Access</a>
+  <div class="video-overlay"></div><!-- Registration Page -->
+  <div id="registrationPage" class="registration-page flex items-center justify-center">
+   <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-20 left-10 w-32 h-32 rounded-full bg-gradient-to-br from-yellow-600/10 to-transparent blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-48 h-48 rounded-full bg-gradient-to-tl from-yellow-500/10 to-transparent blur-3xl"></div>
+   </div>
+   <div class="relative z-10 w-full max-w-md px-6">
+    <div class="text-center mb-10">
+     <div class="inline-block mb-6">
+      <div class="logo-container">
+       <div class="logo-inner"><img src="https://public-files.gumroad.com/jsim8bk5g8vv9i2msfeoopb8k0uj" alt="Salmane Academy Logo" class="w-28 h-28 object-contain" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='transparent'; this.alt='Logo unavailable';">
+       </div>
+      </div>
+     </div>
+     <h1 id="regStoreName" class="text-4xl md:text-5xl font-black gold-gradient mb-4">SALMANE ACADEMY</h1>
+     <p class="text-gray-400 text-lg">انضم إلينا للوصول إلى محتوى حصري</p>
+     <div class="decorative-line w-32 mx-auto mt-6"></div>
     </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section class="section" id="courses">
-    <div class="cards">
-      <div class="card">
-        <h3>Pro UI Kit</h3>
-        <p>High‑fidelity components, animations, and design tokens.</p>
+    <form id="registrationForm" class="space-y-6">
+     <div class="space-y-2"><label for="fullName" class="block text-sm font-semibold text-yellow-600">الاسم الكامل</label> <input type="text" id="fullName" name="fullName" required placeholder="أدخل اسمك الكامل" class="input-gold w-full px-5 py-4 rounded-xl text-white placeholder-gray-500">
+     </div>
+     <div class="space-y-2"><label for="email" class="block text-sm font-semibold text-yellow-600">البريد الإلكتروني</label> <input type="email" id="email" name="email" required placeholder="أدخل بريدك الإلكتروني" class="input-gold w-full px-5 py-4 rounded-xl text-white placeholder-gray-500">
+     </div><button type="submit" class="btn-gold w-full py-4 rounded-xl text-black font-bold text-lg tracking-wide transform hover:scale-105 transition-transform duration-300 pulse-animation"> انضم إلينا الآن ✨ </button>
+     <p class="text-center text-gray-500 text-sm mt-4">بالنقر على "انضم إلينا"، فإنك توافق على شروط الخدمة</p>
+    </form>
+   </div>
+  </div><!-- Main Content -->
+  <div id="mainContent" class="main-content min-h-full"><!-- Sticky Navigation -->
+   <nav class="navbar-sticky fixed top-0 left-0 right-0 z-50 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+     <div class="flex items-center gap-4">
+      <div class="logo-container float-animation">
+       <div class="logo-inner"><img src="https://public-files.gumroad.com/jsim8bk5g8vv9i2msfeoopb8k0uj" alt="Salmane Academy Logo" class="w-12 h-12 object-contain" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='transparent'; this.alt='Logo unavailable';">
+       </div>
       </div>
-      <div class="card">
-        <h3>AI Accelerator</h3>
-        <p>Learn how to integrate LLMs into real production apps.</p>
-      </div>
-      <div class="card">
-        <h3>Fullstack Bootcamp</h3>
-        <p>React, APIs, deployments, and scalable architecture.</p>
-      </div>
+      <h2 id="navStoreName" class="text-2xl font-black gold-gradient">SALMANE ACADEMY</h2>
+     </div>
+     <div class="flex items-center gap-4"><!-- YouTube --> <a href="https://www.youtube.com/@salmanebusiness" target="_blank" rel="noopener noreferrer" class="social-icon">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+       </svg></a> <!-- Instagram --> <a href="https://www.instagram.com/tutorials_with_salmane?igsh=MWhtcXlqcTI4M3I3dg==" target="_blank" rel="noopener noreferrer" class="social-icon">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+       </svg></a> <!-- TikTok --> <a href="https://www.tiktok.com/@salmane.developer?_r=1&amp;_t=ZS-93PGchh8I0z" target="_blank" rel="noopener noreferrer" class="social-icon">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+       </svg></a> <!-- LinkedIn --> <a href="https://www.linkedin.com/in/salmane-bedri-00b2b03a1/" target="_blank" rel="noopener noreferrer" class="social-icon">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+       </svg></a>
+     </div>
     </div>
-  </section>
-
-  <!-- AI CHAT -->
-  <section class="section" id="ai-chat">
-    <div class="hero-box">
-      <h2>AI Assistant</h2>
-      <p>Ask questions, get instant help, and explore ideas powered by AI.</p>
-      <input placeholder="Ask something..." style="width:100%;padding:14px;border-radius:12px;border:none;margin-top:12px;">
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="section" id="pricing">
-    <div class="cards">
-      <div class="card">
-        <h3>Starter</h3>
-        <p>$7 – Digital Products</p>
-        <a class="btn" href="https://gumroad.com" target="_blank">Buy on Gumroad</a>
+   </nav><!-- Hero Section -->
+   <section class="pt-24 pb-16 px-6">
+    <div class="max-w-6xl mx-auto"><!-- Main Banner -->
+     <div class="relative mb-12 float-animation">
+      <div class="card-luxury rounded-3xl overflow-hidden gold-glow"><img src="https://public-files.gumroad.com/oavbwsdqetsqua8z9bwp5jiuff6j" alt="Roadmap to Financial Freedom 2026" class="w-full h-auto object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #b8860b, #d4af37)'; this.alt='Image unavailable';">
       </div>
-      <div class="card">
-        <h3>Pro</h3>
-        <p>$29 – Courses + AI Tools</p>
-        <a class="btn" href="https://stripe.com" target="_blank">Pay with Stripe</a>
+      <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2"><span class="bg-gradient-to-r from-yellow-600 to-yellow-500 text-black px-6 py-2 rounded-full text-sm font-bold"> 🔥 الأكثر مبيعاً 2026 </span>
       </div>
+     </div><!-- Headline -->
+     <div class="text-center mb-12">
+      <h1 id="heroHeadline" class="text-4xl md:text-6xl font-black gold-gradient mb-6 leading-tight">Roadmap to Financial Freedom 2026</h1>
+      <div class="decorative-line w-48 mx-auto mb-8"></div>
+      <p id="marketingCopy" class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">الأغلبية ديال الناس مكايعرفوش يديروا التسويق بالطريقة الصحيحة للمنتج ديالهم, هادشي علاش مكايجيوهومش المبيعات, أنا جبت ليك الحال واجد...👇</p>
+     </div><!-- CTA Button -->
+     <div class="text-center mb-16"><a href="https://salmane248.gumroad.com/l/xwgvxh" target="_blank" rel="noopener noreferrer" class="btn-gold inline-block px-12 py-5 rounded-2xl text-black font-bold text-xl transform hover:scale-110 transition-all duration-300 pulse-animation"> احصل عليه الآن 🚀 </a>
+     </div>
     </div>
-  </section>
+    </div><!-- YouTube Shorts Video Section -->
+   <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold gold-gradient mb-4">شاهد الفيديو 🎬</h2>
+      <div class="decorative-line w-32 mx-auto"></div>
+     </div>
+     <div class="card-luxury rounded-3xl overflow-hidden gold-glow mx-auto" style="max-width: 500px;">
+      <div class="relative" style="padding-bottom: 177.78%; height: 0;"><iframe src="https://www.youtube.com/embed/GcJJT2u2moU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="absolute top-0 left-0 w-full h-full"></iframe>
+      </div>
+     </div>
+    </div>
+   </section><!-- Video Showcase Section -->
+   <section class="py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold gold-gradient mb-4">شاهد الشرح الكامل</h2>
+      <div class="decorative-line w-32 mx-auto"></div>
+     </div>
+   </section><!-- Product Deep Dive Section -->
+   <section class="py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold gold-gradient mb-4">ماذا ستحصل عليه؟</h2>
+      <div class="decorative-line w-32 mx-auto"></div>
+      <p class="text-gray-400 mt-4 text-lg">اختر المنتج المناسب لك وابدأ رحلتك نحو النجاح</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Product 1 - New -->
+      <div class="product-card card-luxury rounded-2xl overflow-hidden cursor-pointer transform hover:rotate-1" onclick="openProductModal('product1')">
+       <div class="relative"><img src="https://public-files.gumroad.com/s96538hexs09lz1rxlx1hkqvlfda" alt="Premium Product 1" class="w-full h-64 object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #1a1a1a, #2a2a2a)'; this.alt='Image unavailable';">
+        <div class="absolute top-4 right-4"><span class="bg-gradient-to-r from-red-600 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">🔥 HOT</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold text-yellow-500 mb-2">من الفوضى إلى السيطرة: كيفاش تنظم وقتك وتغير حياتك 👑</h3>
+        <p class="text-gray-400 mb-4">احصل على أفضل العروض الحصرية</p><button class="btn-gold w-full py-3 rounded-xl text-black font-bold text-sm"> احصل عليه الآن 🛒 </button>
+       </div>
+      </div><!-- Product 2 - New -->
+      <div class="product-card card-luxury rounded-2xl overflow-hidden cursor-pointer transform hover:rotate-1" onclick="openProductModal('product2')">
+       <div class="relative"><img src="https://public-files.gumroad.com/6qfz2scqaai9wg8ion8n7g6pb4rw" alt="Premium Product 2" class="w-full h-64 object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #1a1a1a, #2a2a2a)'; this.alt='Image unavailable';">
+        <div class="absolute top-4 right-4"><span class="bg-gradient-to-r from-purple-600 to-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">⭐ NEW</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold text-yellow-500 mb-2">Canva ➜ Gumroad: الخطة لي مخبيّينها عليك فـ كورسات $200 💸</h3>
+        <p class="text-gray-400 mb-4">استثمر في مستقبلك الرقمي</p><button class="btn-gold w-full py-3 rounded-xl text-black font-bold text-sm"> احصل عليه الآن 🛒 </button>
+       </div>
+      </div><!-- Product 3 - EXCLUSIVE -->
+      <div class="product-card card-luxury rounded-2xl overflow-hidden cursor-pointer transform hover:rotate-1" onclick="openProductModal('product3')">
+       <div class="relative"><img src="https://public-files.gumroad.com/h1gt9dd9vywujsx82zc5dtgeet5s" alt="Exclusive Product" class="w-full h-64 object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #1a1a1a, #2a2a2a)'; this.alt='Image unavailable';">
+        <div class="absolute top-4 right-4"><span class="bg-gradient-to-r from-pink-600 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold">💫 EXCLUSIVE</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold text-yellow-500 mb-2">📘 كيفاش تدخل 10.000 دولار فالشهر غير من Shopify و AutoDS و Dropship 🔥</h3>
+        <p class="text-gray-400 mb-4">تجربة فريدة من نوعها</p><button class="btn-gold w-full py-3 rounded-xl text-black font-bold text-sm"> احصل عليه الآن 🛒 </button>
+       </div>
+      </div><!-- Masterclass Card -->
+      <div class="product-card card-luxury rounded-2xl overflow-hidden cursor-pointer transform hover:rotate-1" onclick="openProductModal('product4')">
+       <div class="relative"><img src="https://public-files.gumroad.com/iwta282jijqv7nhhf8i9q4c3cuf0" alt="Masterclass" class="w-full h-64 object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #1a1a1a, #2a2a2a)'; this.alt='Image unavailable';">
+        <div class="absolute top-4 right-4"><span class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">📚 عرض خاص</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold text-yellow-500 mb-2">بناء منتجات رقمية بدخل أسبوعي يفوق $500 🔥</h3>
+        <p class="text-gray-400 mb-4">دورة شاملة في التسويق الرقمي</p><button class="btn-gold w-full py-3 rounded-xl text-black font-bold text-sm"> احصل عليه الآن 🛒 </button>
+       </div>
+      </div><!-- AI Strategies Card -->
+      <div class="product-card card-luxury rounded-2xl overflow-hidden cursor-pointer transform hover:rotate-1" onclick="openProductModal('product5')">
+       <div class="relative"><img src="https://public-files.gumroad.com/5fcm81sd7qh0dwu0b5hal1y0bwla" alt="AI Strategies" class="w-full h-64 object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #1a1a1a, #2a2a2a)'; this.alt='Image unavailable';">
+        <div class="absolute top-4 right-4"><span class="bg-gradient-to-r from-green-600 to-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">🤖 AI</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold text-yellow-500 mb-2">shopify ابدأ تجارتك الآن: دليل شامل لإنشاء متجر ناجح على 📘💸</h3>
+        <p class="text-gray-400 mb-4">استراتيجيات الذكاء الاصطناعي</p><button class="btn-gold w-full py-3 rounded-xl text-black font-bold text-sm"> احصل عليه الآن 🛒 </button>
+       </div>
+      </div><!-- Full Pack Card -->
+      <div class="product-card card-luxury rounded-2xl overflow-hidden cursor-pointer transform hover:rotate-1" onclick="openProductModal('product6')">
+       <div class="relative"><img src="https://public-files.gumroad.com/j28m8kv1k5gsohd1l6e7umy4zseu" alt="Full Pack" class="w-full h-64 object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #1a1a1a, #2a2a2a)'; this.alt='Image unavailable';">
+        <div class="absolute top-4 right-4"><span class="bg-gradient-to-r from-yellow-600 to-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">💼 باقة كاملة</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold text-yellow-500 mb-2">💼 🥇 Moroccan AI Prompts Mega Pack</h3>
+        <p class="text-gray-400 mb-4">الباقة الكاملة للنجاح</p><button class="btn-gold w-full py-3 rounded-xl text-black font-bold text-sm"> احصل عليه الآن 🛒 </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Product Modal -->
+   <div id="productModal" class="fixed inset-0 z-[9999] hidden items-center justify-center px-4" style="background: rgba(0, 0, 0, 0.95);">
+    <div class="relative w-full max-w-2xl transform transition-all" id="modalContent"><button onclick="closeProductModal()" class="absolute -top-4 -right-4 z-10 w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-xl hover:scale-110 transition-transform gold-glow"> ✕ </button>
+     <div class="card-luxury rounded-3xl overflow-hidden gold-glow">
+      <div class="relative"><img id="modalImage" src="" alt="Product" class="w-full h-80 object-cover" loading="lazy">
+       <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+       <div class="absolute bottom-6 left-6 right-6">
+        <h3 id="modalTitle" class="text-3xl font-black gold-gradient mb-2"></h3>
+        <p id="modalDescription" class="text-gray-300 text-lg"></p>
+       </div>
+      </div>
+      <div class="p-8">
+       <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="text-center p-4 bg-black/40 rounded-xl border border-yellow-900/30">
+         <div class="text-yellow-500 text-2xl mb-1">
+          ⚡
+         </div>
+         <div class="text-gray-400 text-sm">
+          وصول فوري
+         </div>
+        </div>
+        <div class="text-center p-4 bg-black/40 rounded-xl border border-yellow-900/30">
+         <div class="text-yellow-500 text-2xl mb-1">
+          🎁
+         </div>
+         <div class="text-gray-400 text-sm">
+          محتوى حصري
+         </div>
+        </div>
+        <div class="text-center p-4 bg-black/40 rounded-xl border border-yellow-900/30">
+         <div class="text-yellow-500 text-2xl mb-1">
+          💯
+         </div>
+         <div class="text-gray-400 text-sm">
+          جودة عالية
+         </div>
+        </div>
+        <div class="text-center p-4 bg-black/40 rounded-xl border border-yellow-900/30">
+         <div class="text-yellow-500 text-2xl mb-1">
+          🔒
+         </div>
+         <div class="text-gray-400 text-sm">
+          دفع آمن
+         </div>
+        </div>
+       </div><a id="modalCheckoutLink" href="" target="_blank" rel="noopener noreferrer" class="btn-gold block text-center w-full py-5 rounded-2xl text-black font-black text-xl pulse-animation"> اشتري الآن 🚀 </a>
+       <p class="text-center text-gray-500 text-sm mt-4">💳 دفع آمن عبر Gumroad</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- Video Showcase Section -->
+   <section class="py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold gold-gradient mb-4">شاهد الشرح الكامل</h2>
+      <div class="decorative-line w-32 mx-auto"></div>
+     </div>
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"><!-- Video Player -->
+      <div class="card-luxury rounded-3xl overflow-hidden gold-glow"><img src="https://public-files.gumroad.com/gki9kiouis18ukj6mel5rz52x8z1" alt="Product Showcase" class="w-full h-auto object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #b8860b, #d4af37)'; this.alt='Image unavailable';">
+      </div><!-- Description -->
+      <div class="card-luxury rounded-3xl p-8 gold-glow">
+       <h3 class="text-2xl font-bold gold-gradient mb-6">🚀 باغي تبني منتجات رقمية وتحولها لدخل أسبوعي يوصل حتى $500+؟</h3>
+       <p class="text-lg text-gray-300 mb-6 leading-relaxed">بـ Canva، Beacons، والـ AI… وحتى إلى كت بادي من الصور</p>
+       <p class="text-xl font-semibold text-yellow-400 mb-6">هاد الـ EBOOK الشامل تصايب خصّيصًا ليك.</p>
+       <div class="space-y-3 mb-6">
+        <div class="flex items-start gap-3"><span class="text-red-400 text-xl">❌</span>
+         <p class="text-gray-400">ما فيه لا وعود كاذبة</p>
+        </div>
+        <div class="flex items-start gap-3"><span class="text-red-400 text-xl">❌</span>
+         <p class="text-gray-400">لا طرق سحرية</p>
+        </div>
+        <div class="flex items-start gap-3"><span class="text-red-400 text-xl">❌</span>
+         <p class="text-gray-400">لا "Get rich quick"</p>
+        </div>
+       </div>
+       <div class="space-y-3 pt-4 border-t border-yellow-900/30">
+        <div class="flex items-start gap-3"><span class="text-green-400 text-xl">✅</span>
+         <p class="text-gray-300 font-semibold">نظام واضح</p>
+        </div>
+        <div class="flex items-start gap-3"><span class="text-green-400 text-xl">✅</span>
+         <p class="text-gray-300 font-semibold">خطوات عملية</p>
+        </div>
+        <div class="flex items-start gap-3"><span class="text-green-400 text-xl">✅</span>
+         <p class="text-gray-300 font-semibold">سيستام قابل للتطبيق</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- What You'll Learn Section -->
+   <section class="py-16 px-6 bg-gradient-to-b from-transparent to-black/50">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">🔥 شنو غادي تتعلّم فهاد الكتاب؟</h2>
+      <div class="decorative-line w-32 mx-auto"></div>
+     </div>
+     <div class="card-luxury rounded-3xl p-8 md:p-12 gold-glow">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+       <div class="flex items-start gap-4"><span class="text-yellow-500 text-2xl">📌</span>
+        <p class="text-gray-300 text-lg">كيفاش تختار نيش مربح بلا تخمين</p>
+       </div>
+       <div class="flex items-start gap-4"><span class="text-yellow-500 text-2xl">📌</span>
+        <p class="text-gray-300 text-lg">كيفاش تصايب منتجات رقمية عندها قيمة حقيقية</p>
+       </div>
+       <div class="flex items-start gap-4"><span class="text-yellow-500 text-2xl">📌</span>
+        <p class="text-gray-300 text-lg">كيف تستعمل Canva باحتراف (Ebooks – Templates – Systems)</p>
+       </div>
+       <div class="flex items-start gap-4"><span class="text-yellow-500 text-2xl">📌</span>
+        <p class="text-gray-300 text-lg">كيف تبني Store بسيط وموثوق بـ Beacons</p>
+       </div>
+       <div class="flex items-start gap-4"><span class="text-yellow-500 text-2xl">📌</span>
+        <p class="text-gray-300 text-lg">كيف توظّف الـ AI باش تسرّع الخدمة وتوفّر الوقت</p>
+       </div>
+       <div class="flex items-start gap-4"><span class="text-yellow-500 text-2xl">📌</span>
+        <p class="text-gray-300 text-lg">كيف تدير Automation يخدم بدالك</p>
+       </div>
+       <div class="flex items-start gap-4"><span class="text-yellow-500 text-2xl">📌</span>
+        <p class="text-gray-300 text-lg">كيف تفهم Psychology د��ال البيع بلا ضغط</p>
+       </div>
+       <div class="flex items-start gap-4"><span class="text-yellow-500 text-2xl">📌</span>
+        <p class="text-gray-300 text-lg">وكيف تبني سيستام قاتل يولع و يكبر</p>
+       </div>
+      </div>
+      <div class="text-center mt-10"><a href="https://salmane248.gumroad.com/l/xwgvxh" target="_blank" rel="noopener noreferrer" class="btn-gold inline-block px-12 py-5 rounded-2xl text-black font-bold text-xl transform hover:scale-110 transition-all duration-300 pulse-animation"> ابدأ الآن 💪 </a>
+      </div>
+     </div>
+    </div>
+   </section><!-- Technical Specifications -->
+   <section class="py-16 px-6">
+    <div class="max-w-2xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold gold-gradient mb-4">المواصفات التقنية</h2>
+      <div class="decorative-line w-32 mx-auto"></div>
+     </div>
+     <div class="card-luxury rounded-2xl overflow-hidden gold-glow">
+      <div class="spec-row flex justify-between items-center p-5"><span class="text-gray-400">📄 عدد الصفحات</span> <span class="text-yellow-500 font-bold text-lg">76 صفحة</span>
+      </div>
+      <div class="spec-row flex justify-between items-center p-5"><span class="text-gray-400">🗣️ اللغة</span> <span class="text-yellow-500 font-bold text-lg">الدارجة المغربية</span>
+      </div>
+      <div class="spec-row flex justify-between items-center p-5"><span class="text-gray-400">📁 حجم الملف</span> <span class="text-yellow-500 font-bold text-lg">4.65 MB PDF</span>
+      </div>
+      <div class="spec-row flex justify-between items-center p-5"><span class="text-gray-400">📅 الإصدار</span> <span class="text-yellow-500 font-bold text-lg">يناير 2026</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- Final CTA Section -->
+   <section class="py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+     <div class="card-luxury rounded-3xl p-12 gold-glow">
+      <h2 class="text-3xl md:text-4xl font-black gold-gradient mb-6">جاهز تبدأ رحلتك نحو الحرية المالية؟</h2>
+      <p class="text-xl text-gray-400 mb-10">لا تضيع هذه الفرصة - انضم إلى آلاف الناجحين</p><a href="https://salmane248.gumroad.com/?_gl=1*xrha1o*_ga*MTEwNjEyNTYzNy4xNzY2Mjc1MTEw*_ga_6LJN6D94N6*czE3Njk3ODk5MjckbzU0JGcxJHQxNzY5NzkwMDI3JGoyMyRsMCRoMA.." target="_blank" rel="noopener noreferrer" class="btn-gold inline-block px-16 py-6 rounded-2xl text-black font-black text-2xl transform hover:scale-110 transition-all duration-300 pulse-animation"> انضم إلينا الآن 🎯 </a>
+      <p class="text-gray-500 mt-6 text-sm">⚡ وصول فوري بعد الدفع</p>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-12 px-6 border-t border-yellow-900/30">
+    <div class="max-w-6xl mx-auto">
+     <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="text-center md:text-right">
+       <h3 id="footerStoreName" class="text-2xl font-bold gold-gradient mb-2">SALMANE ACADEMY</h3>
+       <p class="text-gray-500">© 2026 جميع الحقوق محفوظة</p>
+      </div>
+      <div class="flex items-center gap-6"><!-- YouTube --> <a href="https://www.youtube.com/@salmanebusiness" target="_blank" rel="noopener noreferrer" class="social-icon">
+        <svg class="w-8 h-8" fill="currentColor" viewbox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg></a> <!-- Instagram --> <a href="https://www.instagram.com/tutorials_with_salmane?igsh=MWhtcXlqcTI4M3I3dg==" target="_blank" rel="noopener noreferrer" class="social-icon">
+        <svg class="w-8 h-8" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+        </svg></a> <!-- TikTok --> <a href="https://www.tiktok.com/@salmane.developer?_r=1&amp;_t=ZS-93PGchh8I0z" target="_blank" rel="noopener noreferrer" class="social-icon">
+        <svg class="w-8 h-8" fill="currentColor" viewbox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a> <!-- LinkedIn --> <a href="https://www.linkedin.com/in/salmane-bedri-00b2b03a1/" target="_blank" rel="noopener noreferrer" class="social-icon">
+        <svg class="w-8 h-8" fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg></a>
+      </div>
+     </div>
+     <div class="text-center mt-8 pt-8 border-t border-yellow-900/20">
+      <p class="text-gray-600 text-sm">صنع بـ ❤️ في المغرب | طريقك نحو الحرية المالية يبدأ هنا</p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      store_name: 'SALMANE ACADEMY',
+      hero_headline: 'Roadmap to Financial Freedom 2026',
+      marketing_copy: 'الأغلبية ديال الناس مكايعرفوش يديروا التسويق بالطريقة الصحيحة للمنتج ديالهم, هادشي علاش مكايجيوهومش المبيعات, أنا جبت ليك الحال واجد...👇'
+    };
 
-  <footer>
-    © 2025 Salmane Academy — Dark Future Starts Here
-  </footer>
+    let config = { ...defaultConfig };
 
-<button class="toggle" id="themeToggle">🌓</button>
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (newConfig) => {
+          config = { ...defaultConfig, ...newConfig };
+          
+          // Update store names
+          const storeName = config.store_name || defaultConfig.store_name;
+          document.getElementById('regStoreName').textContent = storeName;
+          document.getElementById('navStoreName').textContent = storeName;
+          document.getElementById('footerStoreName').textContent = storeName;
+          
+          // Update hero headline
+          document.getElementById('heroHeadline').textContent = config.hero_headline || defaultConfig.hero_headline;
+          
+          // Update marketing copy
+          document.getElementById('marketingCopy').textContent = config.marketing_copy || defaultConfig.marketing_copy;
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['store_name', config.store_name || defaultConfig.store_name],
+          ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
+          ['marketing_copy', config.marketing_copy || defaultConfig.marketing_copy]
+        ])
+      });
+    }
 
-<script>
-/* Dark / Light toggle */
-const toggle=document.getElementById('themeToggle');
-const root=document.documentElement;
-if(localStorage.theme==='light') root.classList.add('light');
+    // Registration form handling
+    const registrationPage = document.getElementById('registrationPage');
+    const mainContent = document.getElementById('mainContent');
+    const registrationForm = document.getElementById('registrationForm');
 
-toggle.onclick=()=>{
-  root.classList.toggle('light');
-  localStorage.theme=root.classList.contains('light')?'light':'dark';
-};
-
-/* Particles */
-const c=document.getElementById('particles');
-const ctx=c.getContext('2d');
-let w,h,particles=[];
-function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}
-window.onresize=resize;resize();
-for(let i=0;i<80;i++)particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5),vy:(Math.random()-.5)});
-function draw(){ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.fillStyle='rgba(109,75,255,.6)';ctx.fillRect(p.x,p.y,2,2)});requestAnimationFrame(draw)}
-draw();
-
-/* Fake AI Chat */
-const input=document.querySelector('#ai-chat input');
-if(input){input.addEventListener('keypress',e=>{if(e.key==='Enter'){alert('AI backend ghadi tzid f المرحلة الجاية 🚀');input.value='';}})}
-</script>
-
-</body>
+    registrationForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const fullName = document.getElementById('fullName').value;
+      const email = document.getElementById('email').value;
+      
+      if (fullName && email) {
+        // Slide out registration page
+        registrationPage.classList.add('slide-out');
+        
+        // Enable scrolling and show main content after transition
+        setTimeout(() => {
+          document.body.classList.remove('overflow-hidden');
+          document.body.classList.add('overflow-auto');
+          mainContent.classList.add('visible');
+          
+          // Hide registration page completely after animation
+          setTimeout(() => {
+            registrationPage.style.display = 'none';
+          }, 100);
+        }, 800);
+      }
+    });
+    
+    // Product Modal Functions
+    const productData = {
+      product1: {
+        title: '💎من الفوضى إلى السيطرة: كيفاش تنظم وقتك وتغير حياتك 👑',
+        description: 'من الفوضى إلى السيطرة: كيفاش تنظم وقتك وتستغل نهارك بالطريقة الصحيحة',
+        image: 'https://public-files.gumroad.com/s96538hexs09lz1rxlx1hkqvlfda',
+        checkoutUrl: 'https://salmane248.gumroad.com/l/xoimgm'
+      },
+      product2: {
+        title: ' Canva ➜ Gumroad: الخطة لي مخبيّينها عليك فـ كورسات $200 💸',
+        description: 'هاد الكتاب غادي يبدّل نظرتك كاملة لعالم الربح من الإنترنت 🔥',
+        image: 'https://public-files.gumroad.com/6qfz2scqaai9wg8ion8n7g6pb4rw',
+        checkoutUrl: 'https://salmane248.gumroad.com/l/jfcwyi'
+      },
+      product3: {
+        title: '📘 كيفاش تدخل 10.000 دولار فالشهر غير من Shopify و AutoDS و Dropship 🔥',
+        description: 'تجربة فريدة من نوعها مع محتوى حصري لا يُفوّت',
+        image: 'https://public-files.gumroad.com/44ca88f9vuaq8dv8yd8z1m9wbdnw',
+        checkoutUrl: 'https://salmane248.gumroad.com/l/gdupbl'
+      },
+      product4: {
+        title: 'بناء منتجات رقمية بدخل أسبوعي يفوق $500 🔥',
+        description: '🚀 باغي تبني منتجات رقمية وتحوّلها لدخل أسبوعي يوصل حتى $500+؟',
+        image: 'https://public-files.gumroad.com/iwta282jijqv7nhhf8i9q4c3cuf0',
+        checkoutUrl: 'https://salmane248.gumroad.com/l/xwgvxh'
+      },
+      product5: {
+        title: 'shopify ابدأ تجارتك الآن: دليل شامل لإنشاء متجر ناجح على 📘💸',
+        description: '✅ كيفاش تبدأ فـ Shopify خطوة بخطوة، من التسجيل حتى الإطلاق',
+        image: 'https://public-files.gumroad.com/5fcm81sd7qh0dwu0b5hal1y0bwla',
+        checkoutUrl: 'https://salmane248.gumroad.com/l/jrvmz'
+      },
+      product6: {
+        title: '💼 🥇 Moroccan AI Prompts Mega Pack',
+        description: '350+ Premium AI Prompts – Made for Morocco 🇲🇦',
+        image: 'https://public-files.gumroad.com/j28m8kv1k5gsohd1l6e7umy4zseu',
+        checkoutUrl: 'https://salmane248.gumroad.com/l/ikvuys'
+      }
+    };
+    
+    function openProductModal(productId) {
+      const modal = document.getElementById('productModal');
+      const product = productData[productId];
+      
+      if (product) {
+        document.getElementById('modalTitle').textContent = product.title;
+        document.getElementById('modalDescription').textContent = product.description;
+        document.getElementById('modalImage').src = product.image;
+        document.getElementById('modalCheckoutLink').href = product.checkoutUrl;
+        
+        modal.classList.add('modal-show');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    
+    function closeProductModal() {
+      const modal = document.getElementById('productModal');
+      modal.classList.remove('modal-show');
+      document.body.style.overflow = '';
+    }
+    
+    // Close modal when clicking outside
+    document.getElementById('productModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeProductModal();
+      }
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c53a1f87544e3d0',t:'MTc2OTYzNjI2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
